@@ -4,7 +4,7 @@ import requests
 import tmdbsimple as tmdb
 
 # Required to add API KEY
-tmdb.API_KEY = ["627484326ecfe112b731976b08fb3e20"]
+tmdb.API_KEY = [APIKEYHERE]
 api_url = ["https://api.themoviedb.org/3"]
 
 

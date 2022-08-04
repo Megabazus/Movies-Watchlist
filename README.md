@@ -1,6 +1,11 @@
-README
+# README
 
-https://marketplace.visualstudio.com/items?itemName=ClemensPeters.format-json
+## Movies Watchlist
+
+## Good tips
+
+### Beautify JSON in Visual Studio Code
+* https://marketplace.visualstudio.com/items?itemName=ClemensPeters.format-json
 
 Background
 To format JSON files in VS code

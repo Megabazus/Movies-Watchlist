@@ -2,17 +2,15 @@ import json
 import requests
 import tmdbsimple as tmdb
 import config
-import os
+from flask import render_template
 from datetime import date
 
 # Required to add API KEY
-from flask import render_template
-
 tmdb.API_KEY = [config.API_KEY]
 api_url = ["https://api.themoviedb.org/3"]
-current_date = date.today()
 
 # Reformat current_date into YYmmdd
+current_date = date.today()
 current_date = current_date.strftime("%Y%m%d")
 
 class Movie:
@@ -54,6 +52,7 @@ try:
     check_file = open('data/daily_trending_movies_%s.json' % current_date)
     print("File Exists. Start loading process.")
     response_trending = json.load(check_file)
+    check_file.close()
 except:
     print("File not available. Start API extract.")
     trending = tmdb.find.Trending(media_type="movie", time_window="day")

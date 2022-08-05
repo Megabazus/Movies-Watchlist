@@ -48,28 +48,43 @@ def watchlist_popular():
 # info(media_type='', time_window='') is the definition
 
 
-try:
-    check_file = open('data/daily_trending_movies_%s.json' % current_date)
-    print("File Exists. Start loading process.")
-    response_trending = json.load(check_file)
-    check_file.close()
-except:
-    print("File not available. Start API extract.")
-    trending = tmdb.find.Trending(media_type="movie", time_window="day")
-    response_trending = trending.info()
-    print(response_trending)
-    with open("data/daily_trending_movies_%s.json" % current_date, "w") as write_file:
-        json.dump(response_trending, write_file)
+def trending_media(media_type, time_window):
+    try:
+        check_file = open('data/daily_trending_movies_%s.json' % current_date)
+        print("File Exists. Start loading process.")
+        response_trending = json.load(check_file)
+        check_file.close()
+    except:
+        print("File not available. Start API extract.")
+        trending = tmdb.find.Trending(media_type=media_type, time_window=time_window)
+        response_trending = trending.info()
+        print(response_trending)
+        with open("data/daily_trending_movies_%s.json" % current_date, "w") as write_file:
+            json.dump(response_trending, write_file)
 
-# How to read results in the JSON output
-daily_trend_movies = []
-for movie in response_trending['results']:
-    print(movie)
-    daily_trend_movies.append(movie['title'])
-    # print(movie['title'])
-print(daily_trend_movies)
+    # How to read results in the JSON output
+    daily_trend_movies = []
+    for movie in response_trending['results']:
+        print(movie)
+        daily_trend_movies.append(movie['title'])
+        # print(movie['title'])
+    return daily_trend_movies
 
-# Search TMDB for movies
-searching = tmdb.Search()
-response_search = searching.movie(query="Jurassic Park")
-print(response_search)
+
+print(trending_media("movie", "day"))
+
+def movie_search(search):
+    # Search TMDB for movies
+    searching = tmdb.Search()
+    response_search = searching.movie(query=search)
+    print(response_search)
+    movielist = []
+    for movie in response_search['results']:
+        print(movie.get('id'),
+              movie.get('title'),
+              movie.get('original_language'))
+        movielist.append(movie['title'])
+    return movielist
+
+
+# print(movie_search("Jurassic Park"))

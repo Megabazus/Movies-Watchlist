@@ -20,9 +20,9 @@ class Todo(db.Model):
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
-    #templist = ['Film1', 'Film2']
-    #temp2list = TMDB.movie_search("Hulk")
-    #temp2list = TMDB.trending_media("movie", "day")
+    # templist = ['Film1', 'Film2']
+    # temp2list = TMDB.movie_search("Hulk")
+    # temp2list = TMDB.trending_media("movie", "day")
     if request.method == 'POST':
         task_content = request.form['content']
         new_task = Todo(content=task_content)
@@ -40,6 +40,7 @@ def home():
     # render_template requires files to be placed in a folder called templates.
     # return render_template("index.html")
 
+
 @app.route('/delete/<int:id>')
 def delete(id):
     task_to_delete = Todo.query.get_or_404(id)
@@ -49,6 +50,7 @@ def delete(id):
         return redirect('/')
     except:
         return 'There was an error deleting the task.'
+
 
 if __name__ == "__main__":
     app.run(debug=True)

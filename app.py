@@ -64,7 +64,7 @@ def delete(id):
 
 @app.route('/search')
 def media_search():
-    title = request.args.get('title')
+    title = request.args.get('capture_search_results')
     search_results = TMDB.movie_search(title)
     return render_template("search_results.html", search_results=search_results)
 

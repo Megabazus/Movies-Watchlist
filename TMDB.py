@@ -92,5 +92,5 @@ def movie_search(search):
     return movielist
 
 
-# print(movie_search("Jurassic Park"))
+print(movie_search("Jurassic Park"))
 

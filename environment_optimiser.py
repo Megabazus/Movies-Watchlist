@@ -2,6 +2,8 @@ import os.path
 import json
 from datetime import date
 
+print("S1_environment_optimiser.py - Imports done, starting code.")
+
 file_exists = os.path.exists('app.py')
 print(file_exists)
 today = date.today()

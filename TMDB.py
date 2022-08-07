@@ -5,6 +5,8 @@ import config
 from flask import render_template
 from datetime import date
 
+print("S1_TMDB.py - Imports done, start code.")
+
 # Required to add API KEY
 tmdb.API_KEY = [config.API_KEY]
 api_url = ["https://api.themoviedb.org/3"]
@@ -47,6 +49,7 @@ def watchlist_popular():
 # Trending() is the Class
 # info(media_type='', time_window='') is the definition
 
+print("S2_TMDB.py - Load def trending_media")
 
 def trending_media(media_type, time_window):
     try:
@@ -72,6 +75,8 @@ def trending_media(media_type, time_window):
 
 
 print(trending_media("movie", "day"))
+print("S3_TMDB.py - Load def movie_search")
+
 
 def movie_search(search):
     # Search TMDB for movies
@@ -88,3 +93,4 @@ def movie_search(search):
 
 
 # print(movie_search("Jurassic Park"))
+

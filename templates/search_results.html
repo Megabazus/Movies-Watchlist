@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<br><br><br>
+<div class="container">
+<table>
+    Test
+</table>
+ 
+{% for result in search_results %}
+<tr> {{ result }}</tr>
+{% endfor %}
+</div>
+
+
+{% endblock %}

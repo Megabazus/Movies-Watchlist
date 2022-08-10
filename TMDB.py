@@ -80,6 +80,7 @@ print("S3_TMDB.py - Load def movie_search")
 
 def movie_search(search):
     # Search TMDB for movies
+    print("Start movie_search function.")
     searching = tmdb.Search()
     response_search = searching.movie(query=search)
     print(response_search)

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 import TMDB
 
@@ -23,6 +23,7 @@ class Todo(db.Model):
 
 # db.create_all()
 # exit()
+
 print("S3_app.py - Run app route and def home().")
 
 
@@ -65,8 +66,10 @@ def delete(id):
 @app.route('/search')
 def media_search():
     title = request.args.get('capture_search_results')
+    print(title)
     search_results = TMDB.movie_search(title)
-    return render_template("search_results.html", search_results=search_results)
+    number_of_results = len(search_results)
+    return render_template("search_results.html", search_results=search_results, number_of_results=number_of_results)
 
 
 if __name__ == "__main__":

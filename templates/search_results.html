@@ -8,11 +8,15 @@
 <br><br><br>
 <div class="container">
 <table>
-    Test
+    Search Results
 </table>
  
-{% for result in search_results %}
-<tr> {{ result }}</tr>
+{% for result in range(number_of_results) %}
+<tr> 
+    <td>{{ search_results[result] }}</td>
+    <br>
+</tr>
+
 {% endfor %}
 </div>
 

@@ -7,9 +7,32 @@
 {% block body %}
 <br><br><br>
 <div class="container">
-  <h1>Movies For Us</h1>
-  
-  <button type="button" id="flag_watched" name="flag_watched" class="btn btn-primary">Watched</button>
+  <h1>Hello, world!</h1>
+  <button type="button" class="btn btn-primary">Primary</button>
+
+  <ol class="list-group list-group-numbered">
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Subheading</div>
+          Content for list item
+        </div>
+        <span class="badge bg-primary rounded-pill">14</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Subheading</div>
+          Content for list item
+        </div>
+        <span class="badge bg-primary rounded-pill">14</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Subheading</div>
+          Content for list item
+        </div>
+        <span class="badge bg-primary rounded-pill">14</span>
+      </li>
+  </ol>
 
   <table>
       <tr>
@@ -18,8 +41,7 @@
       </tr>
       {% for task in tasks %}
       <tr>
-        <td>{{ task.id }}</td>  
-        <td>{{ task.content }}</td>
+          <td>{{ task.content }}</td>
           <td>
             <a href="delete/{{task.id}}">Delete</a> 
               <a href="">Update</a>
@@ -27,19 +49,22 @@
       </tr>
       {% endfor %}
   </table>
-  <br>
-  <table class="table">
-    <tr><h2>Daily Trending Movies</h2></tr>
-      <th scope="col">Title</th>
-      <th scope="col">Add</th>
-      <th scope="col">Rating</th>
 
+  <form action="/" method="POST">
+    <input type="text" name="content" id="content">
+    <input type="submit" value="Add Task">
+  </form>
+
+  <table class="table">
+    <tr>Movie list</tr>
+      <th scope="col">Title</th>
+      <th scope="col">Rating</th>
     </tr>
     {% for listmovie in temp2list %}
     <tr>
       <td>{{ listmovie }}</td>
       <td>
-        <a href="db_add?db_add={{ listmovie }}" method="GET" name="addmovie" id="addmovie">Add to my list</a> <br>
+        <a href="">Watched</a> <br>
       </td>
       <td>
         <a href="">Rating</a> <br>
@@ -48,37 +73,7 @@
     {% endfor %}
 
   </table>
-
-
-  <ol class="list-group list-group-numbered">
-    <li class="list-group-item d-flex justify-content-between align-items-start">
-      <div class="ms-2 me-auto">
-        <div class="fw-bold">Subheading</div>
-        Content for list item
-      </div>
-      <span class="badge bg-primary rounded-pill">14</span>
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-start">
-      <div class="ms-2 me-auto">
-        <div class="fw-bold">Subheading</div>
-        Content for list item
-      </div>
-      <span class="badge bg-primary rounded-pill">14</span>
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-start">
-      <div class="ms-2 me-auto">
-        <div class="fw-bold">Subheading</div>
-        Content for list item
-      </div>
-      <span class="badge bg-primary rounded-pill">14</span>
-    </li>
-</ol>
 </div>
-
-<form action="/" method="POST">
-  <input type="text" name="content" id="content">
-  <input type="submit" value="Add Task">
-</form>
 
 
 {% endblock %}

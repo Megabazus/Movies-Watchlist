@@ -8,22 +8,16 @@
 <br><br><br>
 <div class="container">
 <table>
-    <h1>Search Results</h1>
+    Search Results
 </table>
  
-<ul class="list-group">
 {% for result in range(number_of_results) %}
 <tr> 
-    <li class="list-group-item">
-        <td><h2>{{ search_results[result].title }}</h2>
-            ({{ search_results[result].release_date }})
-        </td>
-        <td><h7>{{ search_results[result].overview }}</h7></td>
-    </li>
-
+    <td>{{ search_results[result] }}</td>
+    <br>
 </tr>
+
 {% endfor %}
-</ul>
 </div>
 
 

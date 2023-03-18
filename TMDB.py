@@ -3,7 +3,7 @@ import requests
 import tmdbsimple as tmdb
 import config
 from flask import render_template
-from datetime import date, datetime
+from datetime import date
 
 print("S1_TMDB.py - Imports done, start code.")
 
@@ -15,21 +15,15 @@ api_url = ["https://api.themoviedb.org/3"]
 current_date = date.today()
 current_date = current_date.strftime("%Y%m%d")
 
-
 class Movie:
-    def __init__(self, mid, title, original_language, popularity, release_date, overview):
+    def __init__(self, mid, title, poster, popularity, release_date, overview):
         self.mid = mid
         self.title = title
-        self.original_language = original_language
+        self.poster = poster
         self.popularity = popularity
         self.release_date = release_date
         self.overview = overview
         self.myRating = 0
-
-
-testClass = []
-x = Movie(123, "goz", "en", 8, '2022-01-01', 'hello')
-testClass.extend([x.mid, x.title, x.original_language])
 
 
 def get_json(url):
@@ -55,9 +49,7 @@ def watchlist_popular():
 # Trending() is the Class
 # info(media_type='', time_window='') is the definition
 
-
 print("S2_TMDB.py - Load def trending_media")
-
 
 def trending_media(media_type, time_window):
     try:
@@ -78,8 +70,7 @@ def trending_media(media_type, time_window):
     for movie in response_trending['results']:
         print(movie)
         daily_trend_movies.append(movie['title'])
-        #print(movie['title'])
-    print(daily_trend_movies)
+        # print(movie['title'])
     return daily_trend_movies
 
 
@@ -93,47 +84,14 @@ def movie_search(search):
     searching = tmdb.Search()
     response_search = searching.movie(query=search)
     print(response_search)
-    sorted_date = sorted(response_search['results'], key=lambda x: x['popularity'], reverse=True)
     movielist = []
-    for movie in sorted_date: #response_search['results']:
+    for movie in response_search['results']:
         print(movie.get('id'),
               movie.get('title'),
-              movie.get('original_language'),
-              movie.get('popularity'),
-              movie.get('release_date'),
-              movie.get('overview'))
-        movielist.append(Movie(movie.get('id'),
-              movie.get('title'),
-              movie.get('original_language'),
-              movie.get('popularity'),
-              movie.get('release_date'),
-              movie.get('overview')))
-        #movielist.append(movie['title'])
+              movie.get('original_language'))
+        movielist.append(movie['title'])
     return movielist
 
-# Test the movie_search function
-# print(movie_search("jurassic park"))
 
-#Python get() method Vs dict[key] to Access Elements
-# get() method returns a default value if the key is missing.
-# However, if the key is not found when you use dict[key], KeyError exception is raised.
+print(movie_search("Jurassic Park"))
 
-def db_duplicate_check(cursor,mid,lid):
-    cursor.execute(
-        "SELECT COUNT(*) FROM movies WHERE mid = %d and lid = %d" % (mid, lid))
-    res = cursor.fetchone()
-    return res[0] > 0
-
-# Get movie information
-def get_movie(mid):
-    movie_url = api_url + \
-        "movie/%s" % (mid) + "?language=en-US&api_key=%s" % (api_key)
-    base_img_url = 'https://image.tmdb.org/t/p/w500'
-    movie = get_json(movie_url)
-    movie = Movie(movie.get('id'),
-                  movie.get('title').replace('"', ''),
-                  base_img_url + movie.get('poster_path'),
-                  movie.get('popularity'),
-                  movie.get('release_date').replace('"', ''),
-                  movie.get('overview').replace('"', ''))
-    return

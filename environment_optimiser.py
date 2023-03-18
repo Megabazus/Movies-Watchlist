@@ -56,6 +56,5 @@ def extract_and_store_json(filename, response):
 # Test extract_and_store_json function
 readjson = open("data/daily_trending_movies_20220804.json")
 tempdata = json.load(readjson)
-print(tempdata)
-# extract_and_store_json("gozo", tempdata)
-# readjson.close()
+extract_and_store_json("gozo", tempdata)
+readjson.close()

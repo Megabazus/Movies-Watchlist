@@ -136,4 +136,4 @@ def get_movie(mid):
                   movie.get('popularity'),
                   movie.get('release_date').replace('"', ''),
                   movie.get('overview').replace('"', ''))
-    return
+    return movie

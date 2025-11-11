@@ -102,7 +102,6 @@ def add_to_watchlist():
             return 'There was an error adding the task.'
 
 
-
 @app.route('/search')
 def media_search():
     title = request.args.get('capture_search_results')
